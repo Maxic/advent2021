@@ -5,20 +5,20 @@ def main():
 
         binary_arr = [line.strip('\n') for line in content]
 
-        oxygen_rating = binary_arr.copy()
-        scrubber_rating = binary_arr.copy()
+        oxygen_rating = binary_arr
+        scrubber_rating = binary_arr
 
         # Get oxygen rating
         for i in range(binary_arr[0].__len__()):
             bit = get_common_oxy_bit(i, oxygen_rating)
-            oxygen_rating = get_rating_arrays(i, bit, oxygen_rating).copy()
+            oxygen_rating = get_rating_arrays(i, bit, oxygen_rating)
             if oxygen_rating.__len__() == 1:
                 break
 
         # Get scrubber rating
         for i in range(binary_arr[0].__len__()):
             bit = get_common_scrub_bit(i, scrubber_rating)
-            scrubber_rating = get_rating_arrays(i, bit, scrubber_rating).copy()
+            scrubber_rating = get_rating_arrays(i, bit, scrubber_rating)
             if scrubber_rating.__len__() == 1:
                 break
 
@@ -52,7 +52,7 @@ def get_common_scrub_bit(index, binary_arr):
 def get_rating_arrays(index, common_bit, binary_arr):
     rating_arr = []
 
-    for _, binary_num in enumerate(binary_arr):
+    for binary_num in binary_arr:
         if binary_num[index] == common_bit:
             rating_arr.append(binary_num)
 
