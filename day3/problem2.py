@@ -38,10 +38,8 @@ def get_common_oxy_bit(index, binary_arr):
 
 
 def get_common_scrub_bit(index, binary_arr):
-    bit_sum = 0
 
-    for binary_num in binary_arr:
-        bit_sum += int(binary_num[index])
+    bit_sum = sum([int(x[index]) for x in binary_arr])
 
     if bit_sum >= binary_arr.__len__()/2:
         return '0'
