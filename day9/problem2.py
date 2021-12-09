@@ -51,8 +51,6 @@ def fill_basin(low_point, basin_i, grid):
         if e: unmarked_basin.append(e)
         if w: unmarked_basin.append(w)
 
-        # remove self from list
-
 
 if __name__ == "__main__":
     main()
