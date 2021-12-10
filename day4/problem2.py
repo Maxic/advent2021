@@ -11,17 +11,13 @@ def main():
         current_number = None
         content.pop(0)
 
-        # clean input
-        for i, line in enumerate(content):
-            content[i] = line.replace('  ', ' ').lstrip()
-
         # create bingo cards
         for i in range(0, content.__len__(), 6):
-            line1 = content[i].strip('\n').split(' ')
-            line2 = content[i+1].strip('\n').split(' ')
-            line3 = content[i+2].strip('\n').split(' ')
-            line4 = content[i+3].strip('\n').split(' ')
-            line5 = content[i+4].strip('\n').split(' ')
+            line1 = content[i].strip('\n').split()
+            line2 = content[i+1].strip('\n').split()
+            line3 = content[i+2].strip('\n').split()
+            line4 = content[i+3].strip('\n').split()
+            line5 = content[i+4].strip('\n').split()
 
             card = np.array(line1 + line2 + line3 + line4 + line5)
 
@@ -48,6 +44,7 @@ def main():
             card = final_card.flatten()
             clean_int_arr = [int(x) for x in np.delete(card, np.where(card == 'X'), axis=0)]
 
+            print(current_number)
             print(sum(clean_int_arr) * current_number)
 
 
