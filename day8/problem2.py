@@ -10,30 +10,25 @@ def main():
 
         for i, signal_patterns in enumerate(signal_list):
             decode = [""] * 10
-            for signal_pattern in signal_patterns:
-                signal_len = signal_pattern.__len__()
-                if signal_len == 2:
-                    decode[1] = signal_pattern
-                elif signal_len == 3:
-                    decode[7] = signal_pattern
-                elif signal_len == 4:
-                    decode[4] = signal_pattern
-                elif signal_len == 7:
-                    decode[8] = signal_pattern
+
+            decode[1] = next(filter(lambda x: len(x) == 2, signal_patterns))
+            decode[4] = next(filter(lambda x: len(x) == 4, signal_patterns))
+            decode[7] = next(filter(lambda x: len(x) == 3, signal_patterns))
+            decode[8] = next(filter(lambda x: len(x) == 7, signal_patterns))
 
             # decode all strings of length 5
             signal_len_5 = list(filter(lambda x: len(x) == 5, signal_patterns))
 
             # if all letters from 1 occur, it's number 3
-            decode[3] = list(filter(lambda x:
+            decode[3] = next(filter(lambda x:
                                     count_common_char(x, decode[1]) == 2,
-                                    signal_len_5))[0]
+                                    signal_len_5))
             signal_len_5.remove(decode[3])
 
             # if 3 letters from 4 occur in a string, it's number 5
-            decode[5] = list(filter(lambda x:
+            decode[5] = next(filter(lambda x:
                                     count_common_char(x, decode[4]) == 3,
-                                    signal_len_5))[0]
+                                    signal_len_5))
             signal_len_5.remove(decode[5])
 
             # Remaining is 2
@@ -43,15 +38,15 @@ def main():
             signal_len_6 = list(filter(lambda x: len(x) == 6, signal_patterns))
 
             # if NOT all letters from 1 occur, it's number 6
-            decode[6] = list(filter(lambda x:
+            decode[6] = next(filter(lambda x:
                                     count_common_char(x, decode[1]) != 2,
-                                    signal_len_6))[0]
+                                    signal_len_6))
             signal_len_6.remove(decode[6])
 
             # if all letters from 4 occur, it's number 9
-            decode[9] = list(filter(lambda x:
+            decode[9] = next(filter(lambda x:
                                     count_common_char(x, decode[4]) == 4,
-                                    signal_len_6))[0]
+                                    signal_len_6))
             signal_len_6.remove(decode[9])
 
             # Remaining is 0
